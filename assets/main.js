@@ -14,7 +14,7 @@ const block__status = document.querySelector('.status')
 
 
 // phần ẩn hiện thẻ input
-
+/*
 vitri.addEventListener('keydown', (event)=>{
 setTimeout(() => {
     showandhide(event) 
@@ -56,12 +56,19 @@ function showandhide(event) {
        block__ph.classList.add('hide')
    }
 }
+*/
 
 
 // phần gửi dữ liệu đi
 
-submit.addEventListener('click', ()=>{
-    
+submit.addEventListener('click',  send)
+submit.addEventListener('keydown', event => {
+    if(event.keyCode === 13){
+        send()
+    }
+})
+
+function send(){
     const data = {
         ngay : ngay.value,
         vitri: vitri.value,
@@ -93,24 +100,37 @@ submit.addEventListener('click', ()=>{
          setTimeout(()=>{
             block__status.classList.add('hide')
             block__status.classList.remove('show')
-
-         },6000)
+         },5000)
     })
     .catch((error) =>{
-
-
     })
-
     vitri.value = ''
     dodan.value = ''
     nhietdo.value = ''
     visinh.value = ''
     ph.value = ''
     can.value = ''
+    ngay.focus()
+}
 
-})
+document.addEventListener('DOMContentLoaded', function () {
+    const inputs = document.querySelectorAll('input');
 
-
-
-
-// phần thao tác enter và mũi tên đi xuống
+    inputs.forEach((input, index) => {
+        input.addEventListener('keydown', function (event) {
+            if (event.keyCode === 13 || event.keyCode === 40) { // Enter hoặc mũi tên xuống
+                event.preventDefault();
+                const nextInput = inputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            } else if (event.keyCode === 38) { // Mũi tên lên
+                event.preventDefault();
+                const prevInput = inputs[index - 1];
+                if (prevInput) {
+                    prevInput.focus();
+                }
+            }
+        });
+    });
+});
