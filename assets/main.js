@@ -14,49 +14,49 @@ const block__status = document.querySelector('.status')
 
 
 // phần ẩn hiện thẻ input
-/*
-vitri.addEventListener('keydown', (event)=>{
-setTimeout(() => {
-    showandhide(event) 
-}, 0);
-} )
 
-function showandhide(event) {
-    var value = event.target.value
-    console.log(value)
-    if(value == 1 || value == 2){
-       block__visinh.classList.remove('show')
-       block__visinh.classList.add('hide')
+// vitri.addEventListener('keydown', (event)=>{
+// setTimeout(() => {
+//     showandhide(event) 
+// }, 0);
+// } )
+
+// function showandhide(event) {
+//     var value = event.target.value
+//     console.log(value)
+//     if(value == 1 || value == 2){
+//        block__visinh.classList.remove('show')
+//        block__visinh.classList.add('hide')
    
-       block__can.classList.remove('hide')
-       block__can.classList.add('show')
+//        block__can.classList.remove('hide')
+//        block__can.classList.add('show')
        
-       block__ph.classList.remove('hide')
-       block__ph.classList.add('show')
+//        block__ph.classList.remove('hide')
+//        block__ph.classList.add('show')
    
-   } else if(value == 3 || value == 4) {
-       block__visinh.classList.remove('show')
-       block__visinh.classList.add('hide')
+//    } else if(value == 3 || value == 4) {
+//        block__visinh.classList.remove('show')
+//        block__visinh.classList.add('hide')
    
-       block__can.classList.remove('show')
-       block__can.classList.add('hide')
+//        block__can.classList.remove('show')
+//        block__can.classList.add('hide')
        
-       block__ph.classList.remove('show')
-       block__ph.classList.add('hide')
+//        block__ph.classList.remove('show')
+//        block__ph.classList.add('hide')
    
-   } else{
+//    } else{
    
-       block__visinh.classList.remove('hide')
-       block__visinh.classList.add('show')
+//        block__visinh.classList.remove('hide')
+//        block__visinh.classList.add('show')
    
-       block__can.classList.remove('show')
-       block__can.classList.add('hide')
+//        block__can.classList.remove('show')
+//        block__can.classList.add('hide')
        
-       block__ph.classList.remove('show')
-       block__ph.classList.add('hide')
-   }
-}
-*/
+//        block__ph.classList.remove('show')
+//        block__ph.classList.add('hide')
+//    }
+// }
+
 
 
 // phần gửi dữ liệu đi
@@ -113,24 +113,25 @@ function send(){
     ngay.focus()
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const inputs = document.querySelectorAll('input');
-
-    inputs.forEach((input, index) => {
-        input.addEventListener('keydown', function (event) {
-            if (event.keyCode === 13 || event.keyCode === 40) { // Enter hoặc mũi tên xuống
-                event.preventDefault();
-                const nextInput = inputs[index + 1];
-                if (nextInput) {
-                    nextInput.focus();
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('keydown', function (event) {
+                if (event.keyCode === 13 || event.keyCode === 40) { // Enter hoặc mũi tên xuống
+                    event.preventDefault();
+                    const nextInput = inputs[index + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                } else if (event.keyCode === 38) { // Mũi tên lên
+                    event.preventDefault();
+                    const prevInput = inputs[index - 1];
+                    if (prevInput) {
+                        prevInput.focus();
+                    }
                 }
-            } else if (event.keyCode === 38) { // Mũi tên lên
-                event.preventDefault();
-                const prevInput = inputs[index - 1];
-                if (prevInput) {
-                    prevInput.focus();
-                }
-            }
+            });
         });
     });
-});
+    
+
