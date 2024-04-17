@@ -12,7 +12,7 @@
 }
 
 label{
-    width: 120px;
+    width: 150px;
 }
 
 input,select{
@@ -28,34 +28,47 @@ input,select{
 }
 
 .hide{
-    display: none;
+    display: none !important;
 }
 
 .show{
-    display: flex;
+    display: flex !important;
 }
 
 
+
+.status {
+  animation: showstatus ease 1s;
+}
 
 .status__block{
     display: flex;
     align-items: center;
-
 }
+
+
 
 
 .status img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 .status p{
-    font-size: 30px;
+    font-size: 20px;
     padding-left: 15px;
 }
 
 
-@keyframes status {
 
+
+@keyframes showstatus {
+ from {
+    opacity: 0;
+ }
+
+ to {
+    opacity: 1;
+ }
     
 }

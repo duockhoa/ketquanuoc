@@ -1,8 +1,8 @@
 const ngay = document.querySelector('.ngay')
 const vitri = document.querySelector('.vi_tri')
-const dodan = document.querySelector('.dodan')
-const nhietdo = document.querySelector('.nhietdo')
-const visinh = document.querySelector('.visinh')
+const dodan = document.querySelector('.do_dan')
+const nhietdo = document.querySelector('.nhiet_do')
+const visinh = document.querySelector('.vi_sinh')
 const ph = document.querySelector('.ph')
 const can = document.querySelector('.can')
 const submit = document.querySelector('.submit')
@@ -10,14 +10,16 @@ const submit = document.querySelector('.submit')
 const block__visinh = document.querySelector('.block__vi-sinh')
 const block__ph = document.querySelector('.block__ph')
 const block__can = document.querySelector('.block__can')
+const block__status = document.querySelector('.status')
 
+
+// phần ẩn hiện thẻ input
 
 vitri.addEventListener('keydown', (event)=>{
 setTimeout(() => {
     showandhide(event) 
 }, 0);
 } )
-
 
 function showandhide(event) {
     var value = event.target.value
@@ -52,37 +54,63 @@ function showandhide(event) {
        
        block__ph.classList.remove('show')
        block__ph.classList.add('hide')
-   
    }
 }
 
 
+// phần gửi dữ liệu đi
 
 submit.addEventListener('click', ()=>{
     
     const data = {
-        ngay : 'ngay',
-        vitri: 'Vị trí',
-        dodan: 'Độ dẫn',
-        nhietdo: 'Nhiệt độ',
-        visinh: 'vi sinh',
-        ph: 'ph',
-        can: 'can'
+        ngay : ngay.value,
+        vitri: vitri.value,
+        dodan: dodan.value,
+        nhietdo: nhietdo.value,
+        visinh: visinh.value,
+        ph: ph.value,
+        can: can.value
     }    
-    
-    const url = "https://script.google.com/macros/s/AKfycbzsME5ExqhKEUuKWr5gX62Cs6IQpPr7bGKCNK97cyXHpdBSSsAPQPfGdoxQTWKvXuVRCw/exec?data="
-      data = JSON.stringify(data)
-    const fullUrl = url+data
+    var json =  JSON.stringify(data)
+    const url = "https://script.google.com/macros/s/AKfycbw5LgHhsb3PRBjL9ZtopWWH5nJbuYxP9UJpn17GnFwN9Tk6aVFK8k_ckhMiibcENsTcCQ/exec?data="
+    const fullUrl = url+json
     fetch(fullUrl)
-    .then((res)=>{
-        console.log(res)
+    .then( response => response.json())
+    .then(result =>{
+        if(result.status == 'success'){
+        block__status.innerHTML= `<div class="status--success status__block">
+        <img src="./assets/status icon/success.jpg" alt="">
+        <p>Gửi dữ liệu thành công</p>
+    </div>`
+        } else {
+            block__status.innerHTML= `<div class="status--fail status__block">
+            <img src="./assets/status icon/cancel.png" alt="">
+            <p>Gửi dữ liệu thành công</p>
+        </div>`
+        }
+         block__status.classList.add('show')
+         block__status.classList.remove('hide')
+         setTimeout(()=>{
+            block__status.classList.add('hide')
+            block__status.classList.remove('show')
+
+         },6000)
     })
+    .catch((error) =>{
+
+
+    })
+
+    vitri.value = ''
+    dodan.value = ''
+    nhietdo.value = ''
+    visinh.value = ''
+    ph.value = ''
+    can.value = ''
 
 })
 
 
 
 
-
-
-//https://script.google.com/macros/s/AKfycbzsME5ExqhKEUuKWr5gX62Cs6IQpPr7bGKCNK97cyXHpdBSSsAPQPfGdoxQTWKvXuVRCw/exec
+// phần thao tác enter và mũi tên đi xuống
