@@ -71,13 +71,18 @@ submit.addEventListener('keydown', event => {
 function send(){
     const data = {
         ngay : ngay.value,
-        vitri: vitri.value,
+        vitri:'W'+ vitri.value,
         dodan: dodan.value,
         nhietdo: nhietdo.value,
         visinh: visinh.value,
         ph: ph.value,
         can: can.value
     }    
+    if(data.visinh == '0'){
+        data.visinh = '<1'
+    }
+
+
     var json =  JSON.stringify(data)
     const url = "https://script.google.com/macros/s/AKfycbw5LgHhsb3PRBjL9ZtopWWH5nJbuYxP9UJpn17GnFwN9Tk6aVFK8k_ckhMiibcENsTcCQ/exec?data="
     const fullUrl = url+json
