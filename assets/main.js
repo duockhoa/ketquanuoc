@@ -118,7 +118,6 @@ function send(){
 
     document.addEventListener('DOMContentLoaded', function () {
         const inputs = document.querySelectorAll('input');
-
         inputs.forEach((input, index) => {
             input.addEventListener('keydown', function (event) {
                 if (event.keyCode === 13 || event.keyCode === 40) { // Enter hoặc mũi tên xuống
